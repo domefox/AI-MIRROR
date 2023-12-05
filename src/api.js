@@ -1,3 +1,5 @@
+// checking I have updated properly
+
 import * as fal from "@fal-ai/serverless-client";
 
 export async function generateImage(frame) {
