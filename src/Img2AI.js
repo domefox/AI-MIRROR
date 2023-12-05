@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { generateImage } from './api';
 
 function Img2Ai({ capturedImage, setMirrorImage }) {
