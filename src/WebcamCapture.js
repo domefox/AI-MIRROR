@@ -8,7 +8,7 @@ function WebcamCapture({ setCapturedImage }) {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
       setCapturedImage(imageSrc);
-    }, 250);
+    }, 10000);
 
     return () => clearInterval(intervalId);
   }, []);

@@ -5,6 +5,11 @@ import * as fal from "@fal-ai/serverless-client";
 export async function generateImage(frame) {
   console.log('generateImage is called'); // Add this line
   try {
+    fal.config({
+      // Can also be auto-configured using environment variables:
+      // Either a single FAL_KEY or a combination of FAL_KEY_ID and FAL_KEY_SECRET
+      credentials: `84bf17d7-ed75-4782-a608-a7a165cf59e2:af97d58be14f1cb3fb1ec0b5917edd83`,
+    });
     const response = await fal.subscribe("110602490-lcm-sd15-i2i", {
       input: {
         prompt: 'abstract cubist painting in the style of picasso',
