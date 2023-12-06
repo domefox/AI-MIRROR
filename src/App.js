@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DisplayAI from './DisplayAI';
 import WebcamCapture from './WebcamCapture';
-import Img2AI from './Img2AI';
+import Api from './api';
 
 function App() {
   const [capturedImage, setCapturedImage] = useState(null);
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <DisplayAI mirrorImage={mirrorImage} />
       <WebcamCapture setCapturedImage={setCapturedImage} />
-      <Img2AI capturedImage={capturedImage} setMirrorImage={setMirrorImage} />
+      <Api frame={capturedImage} setMirrorImage={setMirrorImage} />
     </div>
   );
 }

@@ -2,33 +2,42 @@
 
 import * as fal from "@fal-ai/serverless-client";
 
-export async function generateImage(frame) {
-  console.log('generateImage is called'); // Add this line
+
+export function Api({frame, setMirrorImage}) {
+  //console.log('generateImage is called'); // Add this line
   try {
     fal.config({
       // Can also be auto-configured using environment variables:
       // Either a single FAL_KEY or a combination of FAL_KEY_ID and FAL_KEY_SECRET
       credentials: `84bf17d7-ed75-4782-a608-a7a165cf59e2:af97d58be14f1cb3fb1ec0b5917edd83`,
     });
-    const response = await fal.subscribe("110602490-lcm-sd15-i2i", {
-      input: {
-        prompt: 'abstract cubist painting in the style of picasso',
-        image_url: frame,
+    const connection = fal.realtime.connect("110602490-lcm-sd15-i2i", {
+      connectionKey: '84bf17d7-ed75-4782-a608-a7a165cf59e2:af97d58be14f1cb3fb1ec0b5917edd83',
+      onError: (error) => {
+        console.error(error)
       },
-      logs: true,
-      onQueueUpdate: (update) => {
-        if (update.status === "IN_PROGRESS") {
-          update.logs.map((log) => log.message).forEach(console.log);
+      onResult: (result) => {
+        if(result.images && result.images[0]){
+          setMirrorImage(result.images[0].url);
         }
-      },
+      }
     });
 
-    console.log(response.images[0].url); // Log the output
-    return response.images[0].url;
+    connection.send({
+      image_url: frame, 
+      prompt: "Make this picture look like a child drew it. the subject is a person in front of a webcam. Try to stick closely to the colors in the picture.",
+      strength: 0.8,
+      guidance_scale: 2,
+      negative_prompt: "blurry, low resolution",
+      enable_safety_checks: false
+    });
+
   } catch (error) {
     console.error('Error in generateImage:', error);
   }
 }
+
+export default Api;
 
 // see below for the API docs:
 
