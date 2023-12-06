@@ -14,6 +14,7 @@ export async function generateImage(frame) {
       input: {
         prompt: 'abstract cubist painting in the style of picasso',
         image_url: frame,
+        enable_safety_checks: false
       },
       logs: true,
       onQueueUpdate: (update) => {
