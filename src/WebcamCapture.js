@@ -36,7 +36,7 @@ function WebcamCapture() {
         guidance_scale: 2,
         enable_safety_checks: false
       })
-    }, 10);
+    }, 100);
   }, [image]);
   
   console.log(image)
