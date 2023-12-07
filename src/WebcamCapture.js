@@ -31,12 +31,13 @@ function WebcamCapture() {
       const imageSrc = webcamRef.current.getScreenshot();
       connection.send({
         image_url: imageSrc, 
-        prompt: "Make this picture look like a child drew it.",
+        prompt: "Monet flower fillies, Vincent van Gogh painting",
         strength: 0.2,
-        guidance_scale: 2,
+        guidance_scale: 1,
+        negative_prompt: "blurry, low resolution",
         enable_safety_checks: false
       })
-    }, 100);
+    }, 50);
   }, [image]);
   
   console.log(image)
@@ -46,9 +47,9 @@ function WebcamCapture() {
       <img 
         src = {image}
         alt="AI Generated" 
-        style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "contain"}} 
+        style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", objectFit: "cover"}} 
       />
-      <Webcam ref={webcamRef} style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px"}} /> 
+      <Webcam ref={webcamRef} style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px", visibility: "hidden"}} /> 
     </div>
   );
 }
