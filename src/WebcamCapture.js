@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
 
-function WebcamCapture() {
+function WebcamCapture({currentStyle}) {
   const webcamRef = React.useRef(null);
 
   const [image, setImage] = useState(null);
@@ -26,20 +26,27 @@ function WebcamCapture() {
     }
   });
 
+  const currentStyleRef = useRef(currentStyle); // Add this line
+
+  useEffect(() => {
+    currentStyleRef.current = currentStyle; // Update the ref each time currentStyle changes
+  }, [currentStyle]);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
+      console.log(`Current prompt: ${currentStyle.prompt}`);
       connection.send({
         image_url: imageSrc, 
-        prompt: "abstract angular Cubist Picasso painting",
+        prompt: currentStyle.prompt,
         strength: 0.2,
         guidance_scale: 1,
         negative_prompt: "blurry, low resolution",
         enable_safety_checks: false
       })
     }, 100);
-  }, [image]);
-  
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array
   console.log(image)
 
   return(
@@ -54,6 +61,9 @@ function WebcamCapture() {
         videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
         style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px"}} /> 
+      <div style={{position: "absolute", bottom: "50px", left: "50%", transform: "translateX(-50%)", color: "white"}}>
+        {currentStyle.name} ({currentStyle.displayYear})
+      </div>
     </div>
   );
 }
