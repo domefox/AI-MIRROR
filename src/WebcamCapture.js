@@ -32,7 +32,7 @@ function WebcamCapture() {
       connection.send({
         image_url: imageSrc, 
         prompt: "Make this picture look like a child drew it.",
-        strength: 0.3,
+        strength: 0.2,
         guidance_scale: 2,
         enable_safety_checks: false
       })
