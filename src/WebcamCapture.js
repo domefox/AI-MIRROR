@@ -32,6 +32,8 @@ function WebcamCapture() {
   const [image, setImage] = useState(null);
   const [promptIndex, setPromptIndex] = useState(0); // New state variable
 
+
+
   fal.config({
     // Can also be auto-configured using environment variables:
     // Either a single FAL_KEY or a combination of FAL_KEY_ID and FAL_KEY_SECRET
@@ -54,16 +56,18 @@ function WebcamCapture() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
+      const prompt = ArtStyles[promptIndex].prompt;
+      console.log('Sending prompt:', prompt); // Log the prompt value
       connection.send({
         image_url: imageSrc, 
-        prompt: ArtStyles[promptIndex].prompt,
-        strength: 0.4,
+        prompt: prompt,
+        strength: 0.1,
         guidance_scale: 1,
         negative_prompt: "blurry, low resolution",
         enable_safety_checks: false
       })
     }, 50);
-  }, [image]);
+  }, [image, promptIndex]); // Add promptIndex to the dependency array
 
 
   // New useEffect hook
@@ -96,13 +100,13 @@ function WebcamCapture() {
       <div style={{position: "absolute", bottom: "25px", left: "60px", right: "60px", height: "5px", backgroundColor: "#ffffff"}}></div>
       <div style={{
         position: "absolute", 
-        bottom: "70px", 
+        bottom: "60px", 
         left: "50%", 
         transform: "translateX(-50%)", 
         color: "#fff", 
         textAlign: "center"
       }}>
-        {ArtStyles[promptIndex].name} ({ArtStyles[promptIndex].displayYear})
+        {ArtStyles[promptIndex].name} ({ArtStyles[promptIndex].displayYear}) {ArtStyles[promptIndex].prompt}
       </div>
     </div>
   );
