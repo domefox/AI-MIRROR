@@ -96,8 +96,26 @@ function WebcamCapture() {
         alt="AI Generated" 
         style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "cover"}} 
       />
-      <Webcam ref={webcamRef} style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px", visibility: "hidden"}} /> 
-      <div style={{position: "absolute", bottom: "25px", left: "60px", right: "60px", height: "5px", backgroundColor: "#ffffff"}}></div>
+      <Webcam
+        ref={webcamRef}
+        videoConstraints={{width: 512, height: 512}} 
+        screenshotFormat="image/jpeg" 
+        style={{
+          position: "absolute",
+          bottom: "0",
+          right: "0",
+          width: "200px",
+          height: "150px",
+          visibility: "hidden"
+      }} /> 
+      <div style={{
+        position: "absolute",
+        bottom: "25px",
+        left: "60px",
+        right: "60px",
+        height: "5px",
+        backgroundColor: "#ffffff"}}>
+      </div>
       <div style={{
         position: "absolute", 
         bottom: "60px", 
