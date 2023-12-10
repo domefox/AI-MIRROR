@@ -3,7 +3,7 @@ import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
 
-function WebcamCapture() {
+function WebcamCapture(props) {
   const webcamRef = React.useRef(null);
 
   const [image, setImage] = useState(null);
@@ -29,15 +29,16 @@ function WebcamCapture() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
+      console.log(props.prompt);
       connection.send({
         image_url: imageSrc, 
-        prompt: "abstract angular Cubist Picasso painting",
+        prompt: props.prompt,
         strength: 0.2,
         guidance_scale: 1,
         negative_prompt: "blurry, low resolution",
         enable_safety_checks: false
       })
-    }, 100);
+    }, 500);
   }, [image]);
   
   console.log(image)
@@ -47,13 +48,13 @@ function WebcamCapture() {
       <img 
         src = {image}
         alt="AI Generated" 
-        style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "contain"}} 
+        style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "cover", zIndex: 1}} 
       />
       <Webcam
         ref={webcamRef}  
         videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
-        style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px"}} /> 
+        style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px", visibility: "hidden"}} /> 
     </div>
   );
 }
