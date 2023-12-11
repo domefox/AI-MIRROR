@@ -1,4 +1,4 @@
-export default function sketch(p5, setPromptRef) {
+export default function sketch(p5, setPrompt) {
     let sliderX; 
     let sliderY; 
     let sliderLength; 
@@ -91,9 +91,9 @@ export default function sketch(p5, setPromptRef) {
       // If the index has changed, update the prompt
       if (ArtStyles[index] && ArtStyles[index].prompt !== currentPrompt) {
         currentPrompt = ArtStyles[index].prompt;
-        setPromptRef.current = currentPrompt;
+        setPrompt.current = currentPrompt;
       }
-      console.log(currentPrompt);
+      // console.log(currentPrompt);
     }
   
     p5.mousePressed = () => {

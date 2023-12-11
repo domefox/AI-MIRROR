@@ -3,7 +3,7 @@ import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
 
-function WebcamCapture( {prompt} ) {
+function WebcamCapture({prompt}) {
   const webcamRef = React.useRef(null);
 
   const [image, setImage] = useState(null);
@@ -29,16 +29,16 @@ function WebcamCapture( {prompt} ) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
-      console.log(prompt);
+      console.log(prompt.current);
       connection.send({
         image_url: imageSrc, 
-        prompt: prompt,
-        strength: 0.4,
+        prompt: prompt.current,
+        strength: 0.2,
         guidance_scale: 1,
         negative_prompt: "blurry, low resolution",
         enable_safety_checks: false
       })
-    }, 500);
+    }, 100);
   }, [image]);
   
   console.log(image)
