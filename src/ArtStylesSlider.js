@@ -1,11 +1,11 @@
-export default function sketch(p5, setPrompt) {
+export default function sketch(p5, setPromptRef) {
     let sliderX; 
     let sliderY; 
     let sliderLength; 
     let sliderValue = 0; 
     let isDragging = false; 
     let lastUpdateTime = 0;
-    let currentIndex = -1; // Initialize to a value that's not a valid index
+    let currentPrompt = null; // Add this line at the top of your sketch function
   
     const ArtStyles = [
         { name: "Lascaux", displayYear: "17k - 15k BC", sliderYear: 0.00, prompt: "minimal angular abstract shapes with very little detail, Lascaux cave painting" },
@@ -45,23 +45,12 @@ export default function sketch(p5, setPrompt) {
         lastUpdateTime = p5.millis();
       }
 
-      // to check if index is changed so it knows whether to call for a new prompt
-          // Calculate the current index
-      let index = p5.round(p5.map(sliderValue, 0, sliderLength, 0, ArtStyles.length - 1));
-      index = p5.constrain(index, 0, ArtStyles.length - 1);
-
-      currentIndex = index;
-
-      // If the index has changed, update the prompt
-      if (ArtStyles[currentIndex]) {
-        let currentPrompt = ArtStyles[currentIndex].prompt;
-        setPrompt(currentPrompt);
-        console.log(currentPrompt); // Add this line
-
-      }
   
       drawSlider();
       displayArtStyleInfo();
+
+      // console.log(currentIndex);
+
     };
   
     function drawSlider() {
@@ -98,6 +87,13 @@ export default function sketch(p5, setPrompt) {
       p5.textSize(16);
       p5.textAlign(p5.CENTER);
       p5.text(`${artStyle.name} (${artStyle.displayYear})`, p5.width/2, p5.height-70);
+
+      // If the index has changed, update the prompt
+      if (ArtStyles[index] && ArtStyles[index].prompt !== currentPrompt) {
+        currentPrompt = ArtStyles[index].prompt;
+        setPromptRef.current = currentPrompt;
+      }
+      console.log(currentPrompt);
     }
   
     p5.mousePressed = () => {
