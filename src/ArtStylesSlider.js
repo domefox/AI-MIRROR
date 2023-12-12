@@ -6,6 +6,7 @@ export default function sketch(p5, setPrompt) {
     let isDragging = false; 
     let lastUpdateTime = 0;
     let currentPrompt = null; // Add this line at the top of your sketch function
+    let font;
   
     const ArtStyles = [
         { name: "Lascaux", displayYear: "17k - 15k BC", sliderYear: 0.00, prompt: "minimal angular abstract shapes with very little detail, Lascaux cave painting" },
@@ -29,8 +30,12 @@ export default function sketch(p5, setPrompt) {
         { name: "Refik Anadol", displayYear: "2019-Present", sliderYear: 99.52, prompt: "Refik Anadol AI art" },
         { name: "Future", displayYear: "Present-?", sliderYear: 100.00, prompt: "abstract art of the future" }
       ];
-  
+
+    p5.preload = () => {
+      font = p5.loadFont('/Pixeboy.ttf');
+    }
     p5.setup = () => {
+      p5.textFont(font);
       p5.createCanvas(p5.windowWidth, p5.windowHeight);
       sliderLength = p5.width - 100;
       sliderX = p5.width / 2 - sliderLength / 2;
@@ -84,7 +89,7 @@ export default function sketch(p5, setPrompt) {
   
       let artStyle = ArtStyles[index];
       p5.fill(255);
-      p5.textSize(16);
+      p5.textSize(24);
       p5.textAlign(p5.CENTER);
       p5.text(`${artStyle.name} (${artStyle.displayYear})`, p5.width/2, p5.height-70);
 

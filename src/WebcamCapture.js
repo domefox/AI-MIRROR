@@ -31,15 +31,21 @@ function WebcamCapture({prompt}) {
       const imageSrc = webcamRef.current.getScreenshot();
       console.log(prompt.current);
       connection.send({
-        image_url: imageSrc, 
+        image_url: imageSrc,
         prompt: prompt.current,
         strength: 0.2,
         guidance_scale: 1,
+        seed: 42,
+        num_inference_steps: 6,
+        sync_mode: 1,
         negative_prompt: "blurry, low resolution",
-        enable_safety_checks: false
-      })
-    }, 100);
-  }, [image]);
+        enable_safety_checks: false,
+      });
+    }, 500); // Changed to 1000 for 1 second interval
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Removed image from dependency array
   
   console.log(image)
 
@@ -47,14 +53,16 @@ function WebcamCapture({prompt}) {
     <div>
       <img 
         src = {image}
-        alt="AI Generated" 
+        className="mirrored-image"
+        alt="tinted mirror" 
         style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "cover", zIndex: 1}} 
       />
       <Webcam
         ref={webcamRef}  
+        className="mirrored-image"
         videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
-        style={{position: "absolute", bottom: "0", right: "0", width: "200px", height: "150px", visibility: "hidden"}} /> 
+        style={{position: "absolute", top: "0", right: "0", width: "200px", height: "150px", zIndex: 3}} /> 
     </div>
   );
 }
