@@ -38,10 +38,10 @@ function WebcamCapture({prompt}) {
         seed: 42,
         num_inference_steps: 6,
         sync_mode: 1,
-        negative_prompt: "blurry, low resolution",
+        negative_prompt: "deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 500); // Changed to 1000 for 1 second interval
+    }, 100); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
