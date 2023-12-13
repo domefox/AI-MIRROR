@@ -1,7 +1,9 @@
+import { Buffer } from 'buffer';
 import React, {useState, useEffect} from 'react';
 import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
+global.Buffer = Buffer;
 
 function WebcamCapture({prompt}) {
   const webcamRef = React.useRef(null);
