@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { ArtStyles } from './ArtStyles';
 import WebcamCapture from './WebcamCapture';
+import ArtStylesComponent from './ArtStylesComponent'; // Import the component
+import React, { useRef, useState } from 'react';
 
 function App() {
-  const [currentStyle, setCurrentStyle] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentStyle((currentStyle + 1) % ArtStyles.length);
-    }, 15000);
-    return () => clearInterval(intervalId);
-  }, [currentStyle]);
-
-
+  const promptRef = useRef("test prompt");
   return (
     <div className="App">
-      <WebcamCapture currentStyle={ArtStyles[currentStyle]} />
+      <ArtStylesComponent setPrompt={promptRef} />
+      <WebcamCapture prompt={promptRef} />
     </div>
   );
 }
