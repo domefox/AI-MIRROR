@@ -17,7 +17,7 @@ function WebcamCapture({prompt}) {
   const connection = fal.realtime.connect("110602490-lcm-sd15-i2i", {
     clientonly:false,
     throttleInterval:0,
-    connectionKey: '84bf17d7-ed75-4782-a608-a7a165cf59e2:af97d58be14f1cb3fb1ec0b5917edd83',
+    connectionKey: 'camera-turbo-demo',
     onError: (error) => {
       console.error(error)
     },
@@ -43,7 +43,7 @@ function WebcamCapture({prompt}) {
         negative_prompt: "deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 100); // Changed to 1000 for 1 second interval
+    }, 16); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -62,7 +62,7 @@ function WebcamCapture({prompt}) {
       <Webcam
         ref={webcamRef}  
         className="mirrored-image"
-        videoConstraints={{width: 1024, height: 1024}} 
+        videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
         style={{position: "absolute", top: "0", right: "0", width: "200px", height: "150px", zIndex: 3}} /> 
     </div>
