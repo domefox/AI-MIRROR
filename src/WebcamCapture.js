@@ -35,10 +35,10 @@ function WebcamCapture({prompt}) {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.35,
+        strength: 0.3,
         guidance_scale: 1,
         seed: 42,
-        num_inference_steps: 6,
+        num_inference_steps: 8,
         sync_mode: 1,
         negative_prompt: "deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
