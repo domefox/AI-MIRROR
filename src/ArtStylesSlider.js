@@ -38,8 +38,13 @@ export default function sketch(p5, setPrompt) {
       p5.textFont(font);
       p5.createCanvas(p5.windowWidth, p5.windowHeight);
       sliderLength = p5.width - 100;
-      sliderX = p5.width / 2 - sliderLength / 2;
-      sliderY = p5.height - 30;
+      sliderX = p5.windowWidth / 2 - sliderLength / 2;
+      sliderY = p5.windowHeight - 30;
+    };
+
+    p5.windowResized = () => {
+      p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+      sliderLength = p5.windowWidth - 100;
     };
   
     p5.draw = () => {
@@ -91,7 +96,7 @@ export default function sketch(p5, setPrompt) {
       p5.fill(255);
       p5.textSize(24);
       p5.textAlign(p5.CENTER);
-      p5.text(`${artStyle.name} (${artStyle.displayYear})`, p5.width/2, p5.height-70);
+      p5.text(`${artStyle.name} (${artStyle.displayYear})`, p5.windowWidth/2, p5.windowHeight-70);
 
       // If the index has changed, update the prompt
       if (ArtStyles[index] && ArtStyles[index].prompt !== currentPrompt) {

@@ -62,7 +62,7 @@ function WebcamCapture({prompt}) {
       <Webcam
         ref={webcamRef}  
         className="mirrored-image"
-        videoConstraints={{width: 512, height: 512}} 
+        videoConstraints={{width: 1024, height: 1024}} 
         screenshotFormat="image/jpeg"
         style={{position: "absolute", top: "0", right: "0", width: "200px", height: "150px", zIndex: 3}} /> 
     </div>
