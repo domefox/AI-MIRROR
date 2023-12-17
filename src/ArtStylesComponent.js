@@ -27,7 +27,7 @@ function ArtStylesComponent({ setPrompt }) {
             fontFamily: 'pixeboy',
             fontSize: '20px',
             border: '2px solid white',
-            borderRadius: '5px',
+            borderRadius: '10px',
             backgroundColor: 'transparent',
             color: 'white',
           }}
