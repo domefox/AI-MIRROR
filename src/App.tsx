@@ -1,4 +1,4 @@
-import WebcamCapture from './WebcamCapture';
+import WebcamCapture from './WebcamCapture.tsx';
 import ArtStylesComponent from './ArtStylesComponent'; // Import the component
 import React, { useRef, useState } from 'react';
 
@@ -6,8 +6,7 @@ function App() {
   const promptRef = useRef("test prompt");
   return (
     <div className="App">
-      <ArtStylesComponent setPrompt={promptRef} />
-      <WebcamCapture prompt={promptRef} />
+      <WebcamCapture />
     </div>
   );
 }
