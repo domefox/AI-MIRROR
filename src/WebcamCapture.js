@@ -31,14 +31,14 @@ function WebcamCapture({prompt}) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
-      console.log(prompt.current);
+      console.log(imageSrc);
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.3,
+        strength: .6,
         guidance_scale: 1,
-        seed: 42,
-        num_inference_steps: 8,
+        seed: 1000,
+        num_inference_steps: 3,
         sync_mode: 1,
         negative_prompt: "deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
@@ -62,7 +62,8 @@ function WebcamCapture({prompt}) {
       <Webcam
         ref={webcamRef}  
         className="mirrored-image"
-        videoConstraints={{width: 512, height: 512}} 
+        forceScreenshotSourceSize
+        videoConstraints={{width: 600, height: 600}} 
         screenshotFormat="image/jpeg"
         style={{position: "absolute", top: "0", right: "0", width: "200px", height: "150px", zIndex: 3}} /> 
     </div>
