@@ -35,7 +35,7 @@ function WebcamCapture({prompt}) {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: .7,
+        strength: .8,
         guidance_scale: 1,
         seed: 1000,
         num_inference_steps: 3,
@@ -57,7 +57,7 @@ function WebcamCapture({prompt}) {
         src={image}
         className="mirrored-image"
         alt="tinted mirror" 
-        style={{width: "100vh*(16/9)", height: "100vh", objectFit: "cover", zIndex: 1}} 
+        style={{width: "56.25vh", height: "100vh", objectFit: "cover", zIndex: 1}} 
       />
       <Webcam
         ref={webcamRef}  
@@ -65,7 +65,7 @@ function WebcamCapture({prompt}) {
         forceScreenshotSourceSize
         videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
-        style={{width: "30vh", height: "30vh", position: "absolute", bottom: 20, right: 560, zIndex: 2,
+        style={{width: "15vh", height: "15vh", position: "absolute", top: 20, right: 790, zIndex: 2,
         border: '3px solid white', borderRadius: '10px',}} 
       />
     </div>

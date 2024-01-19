@@ -59,7 +59,7 @@ function ArtStylesComponent({ setPrompt }) {
   };
 
   return (
-    <div style={{ position: 'absolute', bottom: "20px", width: '63%', marginLeft: '10%', zIndex: 2 }}>
+    <div style={{ position: 'absolute', bottom: "20px", width: '52vh', left: '50%', transform: 'translateX(-50%)', zIndex: 2 }}>
       <form onSubmit={handleInputSubmit} style={{ display: 'flex', justifyContent: 'center' }}>
         <input
           type="text"
@@ -75,10 +75,6 @@ function ArtStylesComponent({ setPrompt }) {
             borderRadius: '10px',
             backgroundColor: 'transparent',
             color: 'white',
-            maxWidth: 'calc(100vh * (9/16)', // 90% of 100 * (16/9) vh
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            display: 'block',
           }}
         />
         <button
