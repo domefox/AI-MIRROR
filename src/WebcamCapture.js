@@ -35,15 +35,15 @@ function WebcamCapture({prompt}) {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: .6,
+        strength: .7,
         guidance_scale: 1,
         seed: 1000,
         num_inference_steps: 3,
         sync_mode: 1,
-        negative_prompt: "deformed, ugly, blurry, low resolution",
+        negative_prompt: "people, deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 16); // Changed to 1000 for 1 second interval
+    }, 100); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -52,20 +52,22 @@ function WebcamCapture({prompt}) {
   console.log(image)
 
   return(
-    <div>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", backgroundColor: "white"}}>
       <img 
-        src = {image}
+        src={image}
         className="mirrored-image"
         alt="tinted mirror" 
-        style={{position: "absolute", top: "0", left: "0", width: "100vw", height: "100vh", objectFit: "cover", zIndex: 1}} 
+        style={{width: "100vh*(16/9)", height: "100vh", objectFit: "cover", zIndex: 1}} 
       />
       <Webcam
         ref={webcamRef}  
         className="mirrored-image"
         forceScreenshotSourceSize
-        videoConstraints={{width: 600, height: 600}} 
+        videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
-        style={{position: "absolute", top: "0", right: "0", width: "200px", height: "150px", zIndex: 3}} /> 
+        style={{width: "30vh", height: "30vh", position: "absolute", bottom: 20, right: 560, zIndex: 2,
+        border: '3px solid white', borderRadius: '10px',}} 
+      />
     </div>
   );
 }

@@ -59,15 +59,15 @@ function ArtStylesComponent({ setPrompt }) {
   };
 
   return (
-    <div style={{ position: 'absolute', bottom: "20px", width: '80%', marginLeft: '10%', zIndex: 2 }}>
-      <form onSubmit={handleInputSubmit} style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div style={{ position: 'absolute', bottom: "20px", width: '63%', marginLeft: '10%', zIndex: 2 }}>
+      <form onSubmit={handleInputSubmit} style={{ display: 'flex', justifyContent: 'center' }}>
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           placeholder={inputValue ? inputValue : "Enter your prompt here"}
           style={{
-            width: '90%',
+            width: '100%',
             padding: '10px',
             fontFamily: 'pixeboy',
             fontSize: '20px',
@@ -75,12 +75,17 @@ function ArtStylesComponent({ setPrompt }) {
             borderRadius: '10px',
             backgroundColor: 'transparent',
             color: 'white',
+            maxWidth: 'calc(100vh * (9/16)', // 90% of 100 * (16/9) vh
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'block',
           }}
         />
         <button
           type="button"
           onClick={handleRandomPrompt}
           style={{
+            display: "none",
             width: '8%',
             marginLeft: '2%',
             padding: '10px',
@@ -90,6 +95,7 @@ function ArtStylesComponent({ setPrompt }) {
             borderRadius: '10px',
             backgroundColor: 'transparent',
             color: 'white',
+            maxWidth: 'calc(100vh * (16/9) * 0.08)', // 8% of 100 * (16/9) vh
           }}
         >
           ?
