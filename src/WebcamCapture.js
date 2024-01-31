@@ -1,14 +1,38 @@
 import { Buffer } from 'buffer';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
 global.Buffer = Buffer;
 
-function WebcamCapture({prompt}) {
+function WebcamCapture() {
   const webcamRef = React.useRef(null);
+  const prompt = useRef(null);
 
   const [image, setImage] = useState(null);
+  const [index, setIndex] = useState(0);
+
+  const prompts = [
+    "Cherry Blossoms, Japanese Edo Period Art Nature Landscape",
+    "Fauvist Matisse Flower Field",
+    "Monet flower field",
+    "flowers with saturn's rings around the petals",
+    "flowers in Angular Cubist Colorful picasso style",
+    "2001 a space odyssey"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % prompts.length);
+    }, 5000); // Change every 20 seconds
+
+    return () => clearInterval(interval); // Clean up on unmount
+  }, [prompts.length]);
+
+  useEffect(() => {
+    prompt.current = prompts[index];
+  }, [index, prompts]);
+
   fal.config({
     // Can also be auto-configured using environment variables:
     // Either a single FAL_KEY or a combination of FAL_KEY_ID and FAL_KEY_SECRET
@@ -35,7 +59,7 @@ function WebcamCapture({prompt}) {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: .8,
+        strength: 0.7,
         guidance_scale: 1,
         seed: 1000,
         num_inference_steps: 3,
@@ -43,11 +67,11 @@ function WebcamCapture({prompt}) {
         negative_prompt: "people, deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 100); // Changed to 1000 for 1 second interval
+    }, 10000); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
-  }, []); // Removed image from dependency array
+  }, [prompt]); // Add prompt to the dependency array
   
   console.log(image)
 
@@ -57,7 +81,7 @@ function WebcamCapture({prompt}) {
         src={image}
         className="mirrored-image"
         alt="tinted mirror" 
-        style={{width: "56.25vh", height: "100vh", objectFit: "cover", zIndex: 1}} 
+        style={{position: "fixed", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 1}} 
       />
       <Webcam
         ref={webcamRef}  
@@ -65,11 +89,17 @@ function WebcamCapture({prompt}) {
         forceScreenshotSourceSize
         videoConstraints={{width: 512, height: 512}} 
         screenshotFormat="image/jpeg"
-        style={{width: "15vh", height: "15vh", position: "absolute", top: 20, right: 790, zIndex: 2,
-        border: '3px solid white', borderRadius: '10px',}} 
+        style={{width: "15vh", height: "15vh", position: "absolute", top: 20, right: 40, zIndex: 2,
+        border: '3px solid white', borderRadius: '10px'}} 
       />
     </div>
   );
 }
 
 export default WebcamCapture;
+
+
+// Cherry Blossoms, Japanese Edo Period Art Nature Landscape
+// Fauvist Matisse Flower Field
+// Monet flower field 
+//

@@ -59,7 +59,7 @@ function ArtStylesComponent({ setPrompt }) {
   };
 
   return (
-    <div style={{ position: 'absolute', bottom: "20px", width: '52vh', left: '50%', transform: 'translateX(-50%)', zIndex: 2 }}>
+    <div style={{ position: 'absolute', bottom: "20px", width: '52vh', left: '20%', transform: 'translateX(-50%)', zIndex: 2 }}>
       <form onSubmit={handleInputSubmit} style={{ display: 'flex', justifyContent: 'center' }}>
         <input
           type="text"
@@ -67,14 +67,15 @@ function ArtStylesComponent({ setPrompt }) {
           onChange={handleInputChange}
           placeholder={inputValue ? inputValue : "Enter your prompt here"}
           style={{
+            display: "none",
             width: '100%',
             padding: '10px',
             fontFamily: 'pixeboy',
             fontSize: '20px',
-            border: '2px solid white',
+            border: '2px solid black',
             borderRadius: '10px',
             backgroundColor: 'transparent',
-            color: 'white',
+            color: 'black',
           }}
         />
         <button
