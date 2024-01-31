@@ -18,7 +18,8 @@ function WebcamCapture() {
     "Monet flower field",
     "flowers with saturn's rings around the petals",
     "flowers in Angular Cubist Colorful picasso style",
-    "2001 a space odyssey"
+    "2001 a space odyssey",
+    "georgia o'keeffe flowers in springtime"
   ];
 
   useEffect(() => {
