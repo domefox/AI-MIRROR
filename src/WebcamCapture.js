@@ -12,7 +12,7 @@ function WebcamCapture() {
   const [image, setImage] = useState(null);
   const [index, setIndex] = useState(0);
 
-  const prompts = [
+  const prompts = useMemo(() => [
     "Cherry Blossoms, Japanese Edo Period Art Nature Landscape",
     "Fauvist Matisse Flower Field",
     "Monet flower field",
@@ -25,7 +25,7 @@ function WebcamCapture() {
     "the last supper",
     "the fall of rome",
     "cyberpunk underground neon party"
-  ];
+  ], []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,7 +77,7 @@ function WebcamCapture() {
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
-  }, [prompt]); // Add prompt to the dependency array
+  }, [prompt,connection]); // Add prompt to the dependency array
   
   console.log(image)
 
