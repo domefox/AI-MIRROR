@@ -23,14 +23,22 @@ function WebcamCapture() {
     "star wars stormtroopers",
     "coachella",
     "the last supper",
-    "the fall of rome",
-    "cyberpunk underground neon party"
+    "the fall of rome, the course of empire painting",
+    "cyberpunk underground neon party",
+    "people at sunday mass in the sagrada familia with colorful stained glass windows",
+    "colorful planets with saturn's rings in empty black space",
+    "laniakea supercluster",
+    "constellations in the night sky that are in the shape of people",
+    "lofi hip hop beats to study to girl", // not explicit enough
+    "japanese multipanel painting",
+    "surrealist dali painting", // kinda cool
+    "colorful lichtenstein comic book style, crying girl" // eh
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % prompts.length);
-    }, 5000); // Change every 20 seconds
+    }, 10000); // Change every 20 seconds
 
     return () => clearInterval(interval); // Clean up on unmount
   }, [prompts.length]);
@@ -65,7 +73,7 @@ function WebcamCapture() {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.7,
+        strength: 0.5,
         guidance_scale: 1,
         seed: 1000,
         num_inference_steps: 3,
