@@ -81,6 +81,11 @@ function WebcamCapture() {
   
   console.log(image)
 
+  // Function to handle the next prompt
+  const handleNextPrompt = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % prompts.length);
+  };
+
   return(
     <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", backgroundColor: "white"}}>
       <img 
@@ -101,6 +106,9 @@ function WebcamCapture() {
       <div style={{position: "absolute", top: "calc(20px + 20vh)", right: 40, zIndex: 2, color: "white", fontSize: "20px"}}>
         {prompt.current}
       </div>
+      <button onClick={handleNextPrompt} style={{position: "absolute", top: "calc(20px + 25vh)", right: 40, zIndex: 2, padding: '10px 20px', fontSize: '16px', borderRadius: '5px', cursor: 'pointer'}}>
+        Next Prompt
+      </button>
     </div>
   );
 }
