@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import Webcam from 'react-webcam';
 import * as fal from "@fal-ai/serverless-client";
 
