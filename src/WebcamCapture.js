@@ -19,7 +19,12 @@ function WebcamCapture() {
     "flowers with saturn's rings around the petals",
     "flowers in Angular Cubist Colorful picasso style",
     "2001 a space odyssey",
-    "georgia o'keeffe flowers in springtime"
+    "abstract georgia o'keeffe flowers in springtime",
+    "star wars stormtroopers",
+    "coachella",
+    "the last supper",
+    "the fall of rome",
+    "cyberpunk underground neon party"
   ];
 
   useEffect(() => {
@@ -56,7 +61,7 @@ function WebcamCapture() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const imageSrc = webcamRef.current.getScreenshot();
-      console.log(imageSrc);
+      // console.log(imageSrc);
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
@@ -68,7 +73,7 @@ function WebcamCapture() {
         negative_prompt: "people, deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 10000); // Changed to 1000 for 1 second interval
+    }, 100); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -93,6 +98,9 @@ function WebcamCapture() {
         style={{width: "15vh", height: "15vh", position: "absolute", top: 20, right: 40, zIndex: 2,
         border: '3px solid white', borderRadius: '10px'}} 
       />
+      <div style={{position: "absolute", top: "calc(20px + 20vh)", right: 40, zIndex: 2, color: "white", fontSize: "20px"}}>
+        {prompt.current}
+      </div>
     </div>
   );
 }
