@@ -33,7 +33,7 @@ function WebcamCapture() {
     "japanese multipanel painting",
     "surrealist dali painting", // kinda cool
     "colorful lichtenstein comic book style, crying girl" // eh
-  ];
+  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
