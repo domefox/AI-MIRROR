@@ -13,26 +13,70 @@ function WebcamCapture() {
   const [index, setIndex] = useState(0);
 
   const prompts = [
-    "Cherry Blossoms, Japanese Edo Period Art Nature Landscape",
-    "Fauvist Matisse Flower Field",
-    "Monet flower field",
-    "flowers with saturn's rings around the petals",
-    "flowers in Angular Cubist Colorful picasso style",
-    "2001 a space odyssey",
-    "abstract georgia o'keeffe flowers in springtime",
-    "star wars stormtroopers",
-    "coachella",
-    "the last supper",
-    "the fall of rome, the course of empire painting",
-    "cyberpunk underground neon party",
-    "people at sunday mass in the sagrada familia with colorful stained glass windows",
+
+    // PERFORMANCE
+    "abstract flowers, Fauvist Matisse painting",
+    "abstract flowers, monet water lillies painting",
+    "abstract flowers, saturn's rings around the petals",
+    "abstract flowers, georgia o'keeffe painting",
+    "flowers, colorful Angular Cubist picasso painting",
+    "abstract flowers in the surrealist style of dali",
+    "flower field on the floor of the sagrada familia with colorful stained glass windows",
+
+
+    // PASSIVE
+    // paintings
+    "colorful angular cubist picasso painting",
+    "crying girl (1963), speech bubble, comic book style painting by lichtenstein",
+    "multicolored marilyn monroe painting by Andy Warhol",
+    "radiant baby by keith haring, blue and orange",
+    "abstract mondrian painting",
+    "Japanese Landscape, Edo Period, Woodblock, Hokusai, Ocean",
+    "Pink Cherry Blossom Trees, Japanese Landscape, Edo Period, Woodblock, Hokusai",
+    "starry night sky, van gogh",
+
+    // places
+    "sunday mass in the sagrada familia with colorful stained glass windows",   
+    "the metropolitan museum of art",
+    "garden of eden",
+    "palace of fine arts in san francisco",
+    "washington square park, new york",
+    "central park, new york",
     "colorful planets with saturn's rings in empty black space",
-    "laniakea supercluster",
-    "constellations in the night sky that are in the shape of people",
-    "lofi hip hop beats to study to girl", // not explicit enough
-    "japanese multipanel painting",
-    "surrealist dali painting", // kinda cool
-    "colorful lichtenstein comic book style, crying girl" // eh
+    "the earth",
+    "black hole",
+
+    // characters
+    "2001: a space odyssey",
+    "star wars stormtroopers",
+    "cyberpunk underground neon party",
+    "anime",
+    "lofi girl, hip hop beats to study to",
+    "animal crossing",
+    "lego person",
+    "8-bit, pixelated",
+    "pikachu",
+    "shrek",
+    "founding fathers",
+    "roman statue",
+
+
+
+    // characters
+
+    // "the last supper",
+    // "colorful planets with saturn's rings in empty black space",
+    // "constellations in the night sky that are in the shape of people",
+    // "lofi hip hop beats to study to girl", // not explicit enough
+    // "japanese multipanel painting",
+    // "surrealist dali painting", // kinda cool
+
+    // backup
+        // "laniakea supercluster",
+            // "coachella",
+    // "the fall of rome, the course of empire painting",
+
+
   ];
 
   useEffect(() => {
@@ -73,15 +117,15 @@ function WebcamCapture() {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.5,
+        strength: 0.7,
         guidance_scale: 1,
-        seed: 1000,
+        seed: 42,
         num_inference_steps: 3,
         sync_mode: 1,
-        negative_prompt: "people, deformed, ugly, blurry, low resolution",
+        negative_prompt: "deformed, ugly, blurry, low resolution",
         enable_safety_checks: false,
       });
-    }, 100); // Changed to 1000 for 1 second interval
+    }, 120); // Changed to 1000 for 1 second interval
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -124,7 +168,3 @@ function WebcamCapture() {
 export default WebcamCapture;
 
 
-// Cherry Blossoms, Japanese Edo Period Art Nature Landscape
-// Fauvist Matisse Flower Field
-// Monet flower field 
-//
