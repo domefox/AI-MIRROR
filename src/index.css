@@ -1,21 +1,22 @@
-@font-face {
-  font-family: 'Pixeboy';
-  src: url('../public/Pixeboy.ttf') format('truetype');
-}
-
 body {
   margin: 0;
-  font-family: 'Pixeboy';
+  font-family: 'Helvetica', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  color: yellow; /* Make font color yellow */
+  text-shadow: 1px 1px 2px black; /* Added slight text shadow */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Pixeboy'
+  font-family: 'Helvetica', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  color: yellow; /* Make font color yellow */
+  text-shadow: 1px 1px 2px black; /* Added slight text shadow */
 }
 
 .mirrored-image {
   transform: scaleX(-1);
 }
-
-

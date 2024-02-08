@@ -14,68 +14,26 @@ function WebcamCapture() {
 
   const prompts = [
 
-    // PERFORMANCE
-    "abstract flowers, Fauvist Matisse painting",
-    "abstract flowers, monet water lillies painting",
-    "abstract flowers, saturn's rings around the petals",
-    "abstract flowers, georgia o'keeffe painting",
-    "flowers, colorful Angular Cubist picasso painting",
-    "abstract flowers in the surrealist style of dali",
-    "flower field on the floor of the sagrada familia with colorful stained glass windows",
+    // POEM
+    "a colorful cubist chained in plato's cave, I found that ignorance is iridescent bliss",
+    "through my reality vision pro, I saw flower fields blossoming for hummingbirds to kiss",
+    "a shadow is a mirror without the burden of your imperfections",
+    "a lake is an impressionistic mirror for narcissus seeking reflection",
 
+    "rose-petaled waves crash down the shores of a volcano",
+    "diamonds detach from necklaces and condensate upwards into sparkling clouds",
+    "every kiss begins with kay, god shouted on the 7th day of creation",
+    "20 karat diamonds fell from the sky, flooding the market & ending capitalist civilization",
 
-    // PASSIVE
-    // paintings
-    "colorful angular cubist picasso painting",
-    "crying girl (1963), speech bubble, comic book style painting by lichtenstein",
-    "multicolored marilyn monroe painting by Andy Warhol",
-    "radiant baby by keith haring, blue and orange",
-    "abstract mondrian painting",
-    "Japanese Landscape, Edo Period, Woodblock, Hokusai, Ocean",
-    "Pink Cherry Blossom Trees, Japanese Landscape, Edo Period, Woodblock, Hokusai",
-    "starry night sky, van gogh",
+    "a princess is a petunia painted delicately by matisse",
+    "a queen is a cherry blossom painted reluctantly by hokusai",
+    "when the pink leaves the leaves, springtime knows it's time to leave",
+    "the root of all evil is that we're led by kings and not all-knowing willow trees",
 
-    // places
-    "sunday mass in the sagrada familia with colorful stained glass windows",   
-    "the metropolitan museum of art",
-    "garden of eden",
-    "palace of fine arts in san francisco",
-    "washington square park, new york",
-    "central park, new york",
-    "colorful planets with saturn's rings in empty black space",
-    "the earth",
-    "black hole",
-
-    // characters
-    "2001: a space odyssey",
-    "star wars stormtroopers",
-    "cyberpunk underground neon party",
-    "anime",
-    "lofi girl, hip hop beats to study to",
-    "animal crossing",
-    "lego person",
-    "8-bit, pixelated",
-    "pikachu",
-    "shrek",
-    "founding fathers",
-    "roman statue",
-
-
-
-    // characters
-
-    // "the last supper",
-    // "colorful planets with saturn's rings in empty black space",
-    // "constellations in the night sky that are in the shape of people",
-    // "lofi hip hop beats to study to girl", // not explicit enough
-    // "japanese multipanel painting",
-    // "surrealist dali painting", // kinda cool
-
-    // backup
-        // "laniakea supercluster",
-            // "coachella",
-    // "the fall of rome, the course of empire painting",
-
+    '"she from florida!" I shouted as she rode an alligator like a harley',
+    '"he from california!" she shouted back as I drove my Tesla like a go-kart',
+    'princess peach threw a blue shell so I knocked her off of rainbow road',
+    'a comic book text bubble popped up as she fell, screaming "oh no!"',
 
   ];
 
@@ -117,7 +75,7 @@ function WebcamCapture() {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.7,
+        strength: 0.8,
         guidance_scale: 1,
         seed: 42,
         num_inference_steps: 3,
@@ -155,7 +113,7 @@ function WebcamCapture() {
         style={{width: "15vh", height: "15vh", position: "absolute", top: 20, right: 40, zIndex: 2,
         border: '3px solid white', borderRadius: '10px'}} 
       />
-      <div style={{position: "absolute", top: "calc(20px + 20vh)", right: 40, zIndex: 2, color: "white", fontSize: "20px"}}>
+      <div style={{position: "absolute", bottom: 20, width: "100%", textAlign: "center", zIndex: 2, color: "yellow", fontSize: "20px"}}>
         {prompt.current}
       </div>
       <button onClick={handleNextPrompt} style={{position: "absolute", top: "calc(20px + 25vh)", right: 40, zIndex: 2, padding: '10px 20px', fontSize: '16px', borderRadius: '5px', cursor: 'pointer'}}>
