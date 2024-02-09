@@ -21,14 +21,14 @@ function WebcamCapture() {
     "a lake is an impressionistic mirror for narcissus seeking reflection",
 
     "rose-petaled waves crash down the shores of a volcano",
-    "diamonds detach from necklaces and condensate upwards into sparkling clouds",
+    "diamonds detach from jewelry and condensate upwards into sparkling clouds",
     "every kiss begins with kay, god shouted on the 7th day of creation",
     "20 karat diamonds fell from the sky, flooding the market & ending capitalist civilization",
 
     "a princess is a petunia painted delicately by matisse",
     "a queen is a cherry blossom painted reluctantly by hokusai",
     "when the pink leaves the leaves, springtime knows it's time to leave",
-    "the root of all evil is that we're led by kings and not all-knowing willow trees",
+    "the roots of all evil is that we're led by kings and not all-knowing willow trees",
 
     '"she from florida!" I shouted as she rode an alligator like a harley',
     '"he from california!" she shouted back as I drove my Tesla like a go-kart',
@@ -65,7 +65,7 @@ function WebcamCapture() {
       connection.send({
         image_url: imageSrc,
         prompt: prompt.current,
-        strength: 0.8,
+        strength: 0.5,
         guidance_scale: 1,
         seed: 42,
         num_inference_steps: 3,
