@@ -12,7 +12,7 @@ function WebcamCapture() {
   const [image, setImage] = useState(null);
   const [index, setIndex] = useState(0);
   
-  const prompts =  useMemo([
+  const prompts =  useMemo(() => [
     // POEM
     "a colorful cubist chained in plato's cave, I found that ignorance is iridescent bliss",
     "through my reality vision pro, I saw flower fields blossoming for hummingbirds to kiss",
@@ -110,7 +110,7 @@ function WebcamCapture() {
       })
       clearInterval(intervalId);
     }
-  }, [prompt]); // Add prompt to the dependency array  
+  }, [prompts, connection]); // Add prompt to the dependency array  
   
 
   return(
