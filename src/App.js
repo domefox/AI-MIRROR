@@ -1,6 +1,6 @@
 import WebcamCapture from './WebcamCapture';
 import ArtStylesComponent from './ArtStylesComponent'; // Import the component
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 function App() {
   const promptRef = useRef("test prompt");
